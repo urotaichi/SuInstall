@@ -153,7 +153,7 @@ namespace SuInstall
 				Directory.CreateDirectory(destDirName);
 				File.SetAttributes(destDirName, File.GetAttributes(sourceDirName));
 			}
-			if (destDirName[destDirName.Length - 1] != Path.DirectorySeparatorChar)
+			if (destDirName[^1] != Path.DirectorySeparatorChar)
 			{
 				destDirName += Path.DirectorySeparatorChar;
 			}
@@ -176,6 +176,6 @@ namespace SuInstall
 			}
 		}
 
-		private static string UpdateDataFile = "su.xml";
+		private static readonly string UpdateDataFile = "su.xml";
 	}
 }
