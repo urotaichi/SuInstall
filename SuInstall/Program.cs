@@ -17,7 +17,7 @@ namespace SuInstall
 				Console.WriteLine("***********************************");
 				Console.Write("Install Prechecking.Please Wait...");
 				string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-				UpdateData updateData = UpdateData.ParseXML(Path.Combine(directoryName, Program.UpdateDataFile));
+				UpdateData updateData = UpdateData.ParseXML(Path.Combine(directoryName, UpdateDataFile));
 				if (updateData == null)
 				{
 					Console.WriteLine("Failed!");
@@ -46,7 +46,7 @@ namespace SuInstall
 								Console.WriteLine("***********************************");
 								Console.WriteLine("この更新プログラムはSide 0.8以降からに対応しています。");
 								Console.WriteLine("0.8以前から0.8以降への更新は手動で行う必要があります。");
-								Console.Write("公式サイト(http://side.xrea.jp/)を開きますか?(y/n):");
+								Console.Write("公式サイト(https://side.urotaichi.com/)を開きますか?(y/n):");
 								ConsoleKeyInfo consoleKeyInfo = Console.ReadKey(true);
 								while (consoleKeyInfo.Key != ConsoleKey.Y && consoleKeyInfo.Key != ConsoleKey.N)
 								{
@@ -56,7 +56,7 @@ namespace SuInstall
 								}
 								if (consoleKeyInfo.Key == ConsoleKey.Y)
 								{
-									Process.Start("http://side.xrea.jp/");
+									Process.Start("https://side.urotaichi.com/");
 								}
 								else
 								{
@@ -95,7 +95,7 @@ namespace SuInstall
 							Console.WriteLine("OK.");
 							Console.WriteLine("***********************************");
 							Console.WriteLine("New Files Installing...");
-							Program.MoveDirectory(text, update);
+                            MoveDirectory(text, update);
 							Directory.Delete(text, true);
 							Console.WriteLine("***********************************");
 							Console.WriteLine("Install Completed.");
@@ -124,7 +124,7 @@ namespace SuInstall
 				string tempFileName = Path.GetTempFileName();
 				try
 				{
-					using (StreamWriter streamWriter = new StreamWriter(tempFileName))
+					using (StreamWriter streamWriter = new(tempFileName))
 					{
 						streamWriter.WriteLine("*Side AutoUpdater Error Reporting:");
 						streamWriter.WriteLine(ex.Message);
@@ -172,7 +172,7 @@ namespace SuInstall
 			string[] directories = Directory.GetDirectories(sourceDirName);
 			foreach (string text3 in directories)
 			{
-				Program.MoveDirectory(text3, destDirName + Path.GetFileName(text3));
+                MoveDirectory(text3, destDirName + Path.GetFileName(text3));
 			}
 		}
 

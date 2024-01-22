@@ -13,13 +13,11 @@ namespace SuInstall
 			UpdateData result;
 			try
 			{
-				XmlSerializer xmlSerializer = new XmlSerializer(typeof(UpdateData));
-				using (FileStream fileStream = new FileStream(file, FileMode.Open))
-				{
-					UpdateData updateData = (UpdateData)xmlSerializer.Deserialize(fileStream);
-					result = updateData;
-				}
-			}
+				XmlSerializer xmlSerializer = new(typeof(UpdateData));
+                using FileStream fileStream = new(file, FileMode.Open);
+                UpdateData updateData = (UpdateData)xmlSerializer.Deserialize(fileStream);
+                result = updateData;
+            }
 			catch
 			{
 				result = null;
