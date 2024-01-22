@@ -1,0 +1,2 @@
+# SuInstall
+Sideのアップデートを行います
